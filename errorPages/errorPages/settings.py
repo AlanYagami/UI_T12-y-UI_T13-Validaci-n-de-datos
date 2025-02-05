@@ -137,9 +137,6 @@ HANDLER404 = "app.views.error_404_view"
 
 HANDLER500 = "app.views.error_500_view"
 
-# SEARCH_ENGINE_ID = "0736596be321c4c5d"
-# GOOGLE_API_KEY = "AIzaSyA3KPcWH7cICK6aT6dPvDREOTtDadqjDco"
-
 AUTH_USER_MODEL = "users.CustomUser"
 
 LOGIN_URL = "/users/login/"
