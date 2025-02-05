@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pantalla de Inicio</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: #007bff;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      header nav {
+        margin-top: 10px;
+      }
+
+      header nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+      }
+
+      header nav a:hover {
+        color: #cce7ff;
+      }
+
+      main {
+        display: flex;
+        flex: 1;
+        padding: 20px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      aside {
+        width: 10%;
+        min-width: 200px;
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      aside h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+      }
+
+      aside ul {
+        list-style: none;
+      }
+
+      aside ul li {
+        margin-bottom: 10px;
+      }
+
+      aside ul li a {
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.3s ease;
+      }
+
+      aside ul li a:hover {
+        color: #0056b3;
+      }
+
+      section {
+        flex: 1;
+        min-width: 250px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+
+      section p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      section ul {
+        padding: 15px;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 15px;
+        font-size: 0.9rem;
+      }
+
+      footer a {
+        color: #007bff;
+        text-decoration: none;
+        margin-left: 5px;
+        transition: color 0.3s ease;
+      }
+
+      footer a:hover {
+        color: #cce7ff;
+      }
+
+      form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      input[type="text"] {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px 0 0 5px;
+        font-size: 1rem;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 20px;
+      }
+
+      li a {
+        font-size: 1.2rem;
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      li a:hover {
+        color: #0056b3;
+      }
+
+      li p {
+        margin-top: 5px;
+        font-size: 1rem;
+        color: #666;
+      }
+
+      /* Responsividad */
+      @media (max-width: 768px) {
+        main {
+          flex-direction: column;
+        }
+
+        aside {
+          width: 100%;
+        }
+
+        section {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        header h1 {
+          font-size: 1.5rem;
+        }
+
+        header nav a {
+          font-size: 0.9rem;
+          margin: 0 5px;
+        }
+
+        aside h2,
+        section h2 {
+          font-size: 1.2rem;
+        }
+
+        aside ul li a,
+        section p {
+          font-size: 0.9rem;
+        }
+
+        input[type="text"] {
+          width: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Mi Sitio Web</h1>
+      <nav>
+        <a href="/no-existo">404</a>
+        <a href="/error">500</a>
+        <a href="/onepage">One Page</a>
+        <a href="/prueba">Prueba</a>
+      </nav>
+    </header>
+    <main>
+      <aside>
+        <h2>Enlaces rápidos</h2>
+        <ul>
+          <li><a href="/error">Inicio</a></li>
+          <li><a href="/error">Servicios</a></li>
+          <li><a href="/error">Sobre Nosotros</a></li>
+          <li><a href="/error">Contacto</a></li>
+        </ul>
+      </aside>
+      <section>
+        <form method="GET">
+          <input
+            type="text"
+            name="q"
+            value="{{ query }}"
+            placeholder="Buscar en Google"
+          />
+          <button type="submit">Buscar</button>
+        </form>
+
+        {% if results %}
+        <ul>
+          {% for item in results %}
+          <li>
+            <a href="{{ item.link }}">{{ item.title }}</a>
+            <p>{{ item.snippet }}</p>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </section>
+    </main>
+    <footer>
+      &copy; 2025 Mi Sitio Web. Todos los derechos reservados.
+      <a href="#privacidad">Política de privacidad</a>
+    </footer>
+  </body>
+</html>
